@@ -20,7 +20,7 @@ model Barbershop {
   id          String              @id @default(uuid())
   name        String
   address     String
-  phones      String
+  phones      String[]
   description String
   imageUrl    String
   services    BarbershopService[]
