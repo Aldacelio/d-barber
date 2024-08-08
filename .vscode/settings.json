@@ -1,3 +1,5 @@
 {
-    "cmake.allowCommentsInPresetsFile": false
+    "cmake.allowCommentsInPresetsFile": false,
+    "WillLuke.nextjs.addTypesOnSave": true,
+    "WillLuke.nextjs.hasPrompted": true
 }
