@@ -1,8 +1,6 @@
 import { getServerSession } from "next-auth"
 import Header from "../_components/header"
 import { authOptions } from "../_lib/auth"
-// import { Dialog, DialogContent } from "../_components/ui/dialog"
-// import SignInDialog from "../_components/sign-in-dialog"
 import { notFound } from "next/navigation"
 import { db } from "../_lib/prisma"
 import BookingItem from "../_components/booking-item"
@@ -10,12 +8,7 @@ import BookingItem from "../_components/booking-item"
 const Bookings = async () => {
   const session = await getServerSession(authOptions)
   if (!session) {
-    //     <Dialog>
-    //     <DialogContent className="w-[90%]">
-    //       <SignInDialog />
-    //     </DialogContent>
-    //   </Dialog>
-
+    //TODO: Relizar login
     return notFound()
   }
 
