@@ -4,12 +4,19 @@ import { authOptions } from "../_lib/auth"
 import { notFound } from "next/navigation"
 import { db } from "../_lib/prisma"
 import BookingItem from "../_components/booking-item"
+import { Dialog, DialogContent } from "../_components/ui/dialog"
+import SignInDialog from "../_components/sign-in-dialog"
 
 const Bookings = async () => {
   const session = await getServerSession(authOptions)
   if (!session) {
-    //TODO: Relizar login
-    return notFound()
+    return (
+      <Dialog open>
+        <DialogContent className="w-[90%]">
+          <SignInDialog />
+        </DialogContent>
+      </Dialog>
+    )
   }
 
   const confirmedBookings = await db.booking.findMany({
