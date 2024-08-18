@@ -8,6 +8,7 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import { Sheet, SheetTrigger } from "@/app/_components/ui/sheet"
 import SidebarSheet from "@/app/_components/sidebar-sheet"
+import { getBarbershopServices } from "@/app/_data/get-barbershop-services"
 
 interface BarbershopPageProps {
   params: {
@@ -16,14 +17,7 @@ interface BarbershopPageProps {
 }
 
 const BarbershopPage = async ({ params }: BarbershopPageProps) => {
-  const barbershop = await db.barbershop.findUnique({
-    where: {
-      id: params.id,
-    },
-    include: {
-      services: true,
-    },
-  })
+  const barbershop = await getBarbershopServices(params)
 
   if (!barbershop) {
     return notFound()
