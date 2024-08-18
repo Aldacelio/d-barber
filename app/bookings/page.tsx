@@ -1,7 +1,6 @@
 import { getServerSession } from "next-auth"
 import Header from "../_components/header"
 import { authOptions } from "../_lib/auth"
-import { notFound } from "next/navigation"
 import { db } from "../_lib/prisma"
 import BookingItem from "../_components/booking-item"
 import { Dialog, DialogContent } from "../_components/ui/dialog"
@@ -63,6 +62,9 @@ const Bookings = async () => {
 
       <div className="space-y-3 p-5">
         <h1 className="text-xl font-bold">Agendamentos</h1>
+        {confirmedBookings.length === 0 && concludedBookings.length === 0 && (
+          <p className="text-gray-400">Você não tem agendamentos.</p>
+        )}
         {confirmedBookings.length > 0 && (
           <>
             <h2 className="upercase text-xxs mb-3 mt-6 font-bold text-gray-400">
