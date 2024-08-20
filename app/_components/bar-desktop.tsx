@@ -13,44 +13,42 @@ const BarDesktop = () => {
   const handleLogoutClick = () => signOut()
 
   return (
-    <>
+    <div className="flex items-center gap-4">
       {data?.user ? (
-        <div className="flex items-center gap-3">
+        <>
           <div className="flex items-center gap-2">
             <Avatar>
               <AvatarImage src={data?.user?.image ?? ""} />
             </Avatar>
-            <p>{data.user.name}</p>
+            <p className="text-xs">{data.user.name}</p>
           </div>
           <Link href="/bookings">
-            <Button variant="outline" className="gap-2">
+            <Button variant="outline" className="gap-2 text-xs">
               <CalendarIcon size={18} />
-              <p className="text-xs">Agendamentos</p>
+              <span>Agendamentos</span>
             </Button>
           </Link>
           <Button
             variant="outline"
             onClick={handleLogoutClick}
-            className="gap-2"
+            className="gap-2 text-xs"
           >
             <LogOutIcon size={18} />
-            <p className="text-xs">Sair da conta</p>
+            <span>Sair da conta</span>
           </Button>
-        </div>
+        </>
       ) : (
-        <div>
-          <Dialog>
-            <DialogTrigger className="flex items-center gap-2 rounded-lg bg-primary p-2 hover:bg-primary/80">
-              <CircleUser />
-              <p>Logar</p>
-            </DialogTrigger>
-            <DialogContent className="w-[90%]">
-              <SignInDialog />
-            </DialogContent>
-          </Dialog>
-        </div>
+        <Dialog>
+          <DialogTrigger className="flex items-center gap-2 rounded-lg bg-primary p-2 hover:bg-primary/80">
+            <CircleUser />
+            <span>Logar</span>
+          </DialogTrigger>
+          <DialogContent className="w-[90%]">
+            <SignInDialog />
+          </DialogContent>
+        </Dialog>
       )}
-    </>
+    </div>
   )
 }
 

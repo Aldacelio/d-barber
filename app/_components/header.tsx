@@ -11,8 +11,14 @@ const Header = async () => {
   return (
     <Card>
       <CardContent className="flex flex-row items-center justify-between p-5">
-        <Link href="/">
-          <Image alt="logo" src="/logo.png" height={18} width={120} />
+        <Link href="/" className="hidden md:ml-10 md:flex">
+          <Image
+            alt="logo"
+            src="/logo.png"
+            height={18}
+            width={120}
+            className="md:flex"
+          />
         </Link>
 
         {/* Navegação Desktop */}
@@ -21,6 +27,17 @@ const Header = async () => {
         </div>
 
         {/* Menu Mobile */}
+
+        <Link href="/" className="md:hidden">
+          <Image
+            alt="logo"
+            src="/logo.png"
+            height={18}
+            width={120}
+            className="md:hidden"
+          />
+        </Link>
+
         <Sheet>
           <SheetTrigger asChild>
             <Button size="icon" variant="outline" className="md:hidden">
