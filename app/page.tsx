@@ -12,6 +12,7 @@ import { authOptions } from "./_lib/auth"
 import { format } from "date-fns"
 import { ptBR } from "date-fns/locale"
 import { getConfirmedBookings } from "./_data/get-confirmed-bookings"
+import BookingCarousel from "./_components/booking-carousel"
 
 const Home = async () => {
   const session = await getServerSession(authOptions)
@@ -27,24 +28,37 @@ const Home = async () => {
     <div>
       {/* header */}
       <Header />
-      <div className="hidden md:ml-16 md:flex md:w-[90%] md:py-11">
-        <div className="w-full">
-          <h2 className="text-2xl font-bold">
-            Olá, {session?.user ? session.user.name : "Bem-vindo"}
-          </h2>
-          <p>
-            <span className="text-xs capitalize">
-              {format(new Date(), "EEEE, dd ", { locale: ptBR })}
-            </span>
-            <span className="text-xs">de</span>
-            <span className="text-xs capitalize">
-              {format(new Date(), " MMMM", { locale: ptBR })}
-            </span>
-          </p>
+      <div className="hidden md:flex">
+        <div className="relative h-[25rem] w-full bg-[url('/fundo1.png')] bg-no-repeat">
+          <div className="absolute left-12 top-8 w-[37%]">
+            <h2 className="text-2xl font-bold text-white">
+              Olá, {session?.user ? session.user.name : "Bem-vindo"}
+            </h2>
+            <p className="text-white">
+              <span className="text-xs capitalize">
+                {format(new Date(), "EEEE, dd ", { locale: ptBR })}
+              </span>
+              <span className="text-xs">de</span>
+              <span className="text-xs capitalize">
+                {format(new Date(), " MMMM", { locale: ptBR })}
+              </span>
+            </p>
 
-          {/* Busca */}
-          <div className="mt-6 w-[45%] gap-2">
-            <Search />
+            {/* Busca */}
+            <div className="mt-6 gap-2">
+              <Search />
+            </div>
+
+            {/* Agendamento */}
+            {confirmedBookings.length > 0 && (
+              <>
+                <h2 className="upercase text-xxs mb-3 mt-6 font-bold text-gray-400">
+                  Agendamentos
+                </h2>
+
+                <BookingCarousel />
+              </>
+            )}
           </div>
         </div>
       </div>
