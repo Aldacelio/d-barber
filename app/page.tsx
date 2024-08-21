@@ -13,6 +13,7 @@ import { format } from "date-fns"
 import { ptBR } from "date-fns/locale"
 import { getConfirmedBookings } from "./_data/get-confirmed-bookings"
 import BookingCarousel from "./_components/booking-carousel"
+import BarbershopCarousel from "./_components/barbershop-carousel"
 
 const Home = async () => {
   const session = await getServerSession(authOptions)
@@ -59,6 +60,15 @@ const Home = async () => {
                 <BookingCarousel />
               </>
             )}
+          </div>
+
+          <div className="absolute left-2/4 top-3 w-[46%]">
+            {/* Recomendados */}
+            <h2 className="upercase text-xxs mb-3 mt-6 font-bold text-gray-400">
+              Recomendados
+            </h2>
+
+            <BarbershopCarousel barbershops={barbershops} />
           </div>
         </div>
       </div>
