@@ -27,7 +27,29 @@ const Home = async () => {
     <div>
       {/* header */}
       <Header />
-      <div className="p-5">
+      <div className="hidden md:ml-16 md:flex md:w-[90%] md:py-11">
+        <div className="w-full">
+          <h2 className="text-2xl font-bold">
+            Olá, {session?.user ? session.user.name : "Bem-vindo"}
+          </h2>
+          <p>
+            <span className="text-xs capitalize">
+              {format(new Date(), "EEEE, dd ", { locale: ptBR })}
+            </span>
+            <span className="text-xs">de</span>
+            <span className="text-xs capitalize">
+              {format(new Date(), " MMMM", { locale: ptBR })}
+            </span>
+          </p>
+
+          {/* Busca */}
+          <div className="mt-6 w-[45%] gap-2">
+            <Search />
+          </div>
+        </div>
+      </div>
+
+      <div className="p-5 md:hidden">
         <h2 className="text-xl font-bold">
           Olá, {session?.user ? session.user.name : "Bem-vindo"}
         </h2>
