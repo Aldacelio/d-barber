@@ -1,4 +1,3 @@
-// BookingCarousel.tsx
 "use client"
 
 import { useState, useEffect } from "react"
@@ -6,32 +5,15 @@ import BookingItem from "./booking-item"
 import { Prisma } from "@prisma/client"
 import { getConfirmedBookings } from "../_data/get-confirmed-bookings"
 
-interface Booking {
-  id: string
-  userId: string
-  serviceId: string
-  date: Date
-  createdAt: Date
-  updatedAt: Date
-  service: {
-    id: string
-    name: string
-    description: string
-    imageUrl: string
-    price: Prisma.Decimal
-    barbershopId: string
-    barbershop: {
-      id: string
-      name: string
-      address: string
-      phones: string[]
-      description: string
-      imageUrl: string
-      createdAt: Date
-      updatedAt: Date
+type Booking = Prisma.BookingGetPayload<{
+  include: {
+    service: {
+      include: {
+        barbershop: true
+      }
     }
   }
-}
+}>
 
 const BookingCarousel = () => {
   const [confirmedBookings, setConfirmedBookings] = useState<Booking[]>([])

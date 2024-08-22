@@ -17,7 +17,7 @@ const Header = async () => {
             src="/logo.png"
             height={18}
             width={120}
-            className="md:flex"
+            className="h-auto w-auto md:flex"
           />
         </Link>
 
@@ -34,7 +34,7 @@ const Header = async () => {
             src="/logo.png"
             height={18}
             width={120}
-            className="md:hidden"
+            className="h-auto w-auto md:hidden"
           />
         </Link>
 
