@@ -12,14 +12,18 @@ import {
 
 interface BarbershopCarouselProps {
   barbershops: Barbershop[]
+  basis: string
 }
 
-const BarbershopCarousel = ({ barbershops }: BarbershopCarouselProps) => {
+const BarbershopCarousel = ({
+  barbershops,
+  basis,
+}: BarbershopCarouselProps) => {
   return (
     <Carousel>
       <CarouselContent>
         {barbershops.map((barbershop) => (
-          <CarouselItem key={barbershop.id}>
+          <CarouselItem key={barbershop.id} className={basis}>
             <BarbershopItem barbershop={barbershop} />
           </CarouselItem>
         ))}

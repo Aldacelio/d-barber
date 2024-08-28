@@ -23,13 +23,19 @@ const Home = async () => {
       name: "desc",
     },
   })
+  const visitedBarbershops = await db.barbershop.findMany({
+    orderBy: {
+      name: "asc",
+    },
+  })
   const confirmedBookings = await getConfirmedBookings()
 
   return (
     <div>
       {/* header */}
       <Header />
-      <div className="hidden md:flex">
+      <div className="md:flex md:flex-col">
+        {/* Seção com plano de fundo */}
         <div className="relative h-[25rem] w-full bg-[url('/fundo1.png')] bg-no-repeat">
           <div className="absolute left-12 top-8 w-[37%]">
             <h2 className="text-2xl font-bold text-white">
@@ -56,20 +62,40 @@ const Home = async () => {
                 <h2 className="upercase text-xxs mb-3 mt-6 font-bold text-gray-400">
                   Agendamentos
                 </h2>
-
                 <BookingCarousel />
               </>
             )}
           </div>
 
+          {/* Recomendados */}
           <div className="absolute left-2/4 top-3 w-[46%]">
-            {/* Recomendados */}
             <h2 className="upercase text-xxs mb-3 mt-6 font-bold text-gray-400">
               Recomendados
             </h2>
-
-            <BarbershopCarousel barbershops={barbershops} />
+            <BarbershopCarousel barbershops={barbershops} basis="basis-1/3" />
           </div>
+        </div>
+
+        {/* Populares */}
+        <div className="w-full px-12 py-8">
+          <h2 className="upercase text-xxs mb-3 font-bold text-gray-400">
+            Populares
+          </h2>
+          <BarbershopCarousel
+            barbershops={popularBarbershops}
+            basis="basis-1/5"
+          />
+        </div>
+
+        {/* Mais visitados */}
+        <div className="w-full px-12 py-8">
+          <h2 className="upercase text-xxs mb-3 font-bold text-gray-400">
+            Mais visitados
+          </h2>
+          <BarbershopCarousel
+            barbershops={visitedBarbershops}
+            basis="basis-1/5"
+          />
         </div>
       </div>
 
