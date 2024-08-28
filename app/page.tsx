@@ -34,7 +34,7 @@ const Home = async () => {
     <div>
       {/* header */}
       <Header />
-      <div className="md:flex md:flex-col">
+      <div className="hidden md:flex md:flex-col">
         {/* Seção com plano de fundo */}
         <div className="relative h-[25rem] w-full bg-[url('/fundo1.png')] bg-no-repeat">
           <div className="absolute left-12 top-8 w-[37%]">
