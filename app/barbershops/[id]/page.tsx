@@ -9,6 +9,7 @@ import { notFound } from "next/navigation"
 import { Sheet, SheetTrigger } from "@/app/_components/ui/sheet"
 import SidebarSheet from "@/app/_components/sidebar-sheet"
 import { getBarbershopServices } from "@/app/_data/get-barbershop-services"
+import Header from "@/app/_components/header"
 
 interface BarbershopPageProps {
   params: {
@@ -25,18 +26,19 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
 
   return (
     <div>
+      <Header />
       {/* Imagem */}
-      <div className="relative h-[250px] w-full">
+      <div className="relative h-[250px] w-full md:ml-16 md:mt-8 md:h-96 md:w-[55%]">
         <Image
           alt={barbershop.name}
           fill
-          className="object-cover"
+          className="object-cover md:rounded-lg"
           src={barbershop?.imageUrl}
         />
         <Button
           size="icon"
           variant="secondary"
-          className="absolute left-4 top-4"
+          className="absolute left-4 top-4 md:hidden"
           asChild
         >
           <Link href="/">
@@ -48,7 +50,7 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
             <Button
               size="icon"
               variant="outline"
-              className="absolute right-4 top-4"
+              className="absolute right-4 top-4 md:hidden"
             >
               <MenuIcon />
             </Button>
@@ -58,14 +60,16 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
       </div>
 
       {/* Informações */}
-      <div className="border-b border-solid p-5">
-        <h1 className="mb-3 text-xl font-bold">{barbershop?.name}</h1>
+      <div className="border-b border-solid p-5 md:ml-11 md:border-none">
+        <h1 className="mb-3 text-xl font-bold md:text-2xl">
+          {barbershop?.name}
+        </h1>
         <div className="mb-2 flex items-center gap-2">
           <MapPinIcon className="text-primary" size={18} />
           <p className="text-sm">{barbershop?.address}</p>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 md:hidden">
           <MapPinIcon className="fill-primary text-primary" size={18} />
           <p className="text-sm">5,0 (499 avaliações)</p>
         </div>
