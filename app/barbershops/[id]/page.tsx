@@ -10,6 +10,8 @@ import { Sheet, SheetTrigger } from "@/app/_components/ui/sheet"
 import SidebarSheet from "@/app/_components/sidebar-sheet"
 import { getBarbershopServices } from "@/app/_data/get-barbershop-services"
 import Header from "@/app/_components/header"
+import { Card, CardContent } from "@/app/_components/ui/card"
+import { Avatar, AvatarImage } from "@/app/_components/ui/avatar"
 
 interface BarbershopPageProps {
   params: {
@@ -28,7 +30,7 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
     <div>
       <Header />
       {/* Imagem */}
-      <div className="relative h-[250px] w-full md:ml-16 md:mt-8 md:h-96 md:w-[55%]">
+      <div className="relative h-[250px] w-full md:ml-10 md:mt-8 md:h-96 md:w-[58%]">
         <Image
           alt={barbershop.name}
           fill
@@ -45,26 +47,14 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
             <ChevronLeftIcon />
           </Link>
         </Button>
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button
-              size="icon"
-              variant="outline"
-              className="absolute right-4 top-4 md:hidden"
-            >
-              <MenuIcon />
-            </Button>
-          </SheetTrigger>
-          <SidebarSheet />
-        </Sheet>
       </div>
 
       {/* Informações */}
-      <div className="border-b border-solid p-5 md:ml-11 md:border-none">
+      <div className="border-b border-solid p-5 md:relative md:ml-5 md:border-none">
         <h1 className="mb-3 text-xl font-bold md:text-2xl">
           {barbershop?.name}
         </h1>
-        <div className="mb-2 flex items-center gap-2">
+        <div className="mb-2 flex items-center gap-2 md:mb-0">
           <MapPinIcon className="text-primary" size={18} />
           <p className="text-sm">{barbershop?.address}</p>
         </div>
@@ -76,19 +66,45 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
       </div>
 
       {/* Descrição */}
-      <div className="border-b border-solid p-5">
-        <h2 className="text-xss font-bold uppercase text-gray-400">
+      <div className="border-b border-solid p-5 md:absolute md:right-3 md:top-28 md:mr-10 md:w-[32%] md:rounded-2xl md:bg-secondary">
+        {/* Mapa */}
+
+        <div className="relative">
+          <Image
+            alt={`Mapa da barbearia ${barbershop.name}`}
+            src="/map.png"
+            width={400}
+            height={300}
+            className="hidden md:flex md:w-full md:rounded-xl md:object-cover"
+          />
+
+          <Card className="hidden md:absolute md:bottom-4 md:z-50 md:ml-4 md:flex md:w-[90%] md:rounded-xl">
+            <CardContent className="flex items-center gap-3 px-5 py-3">
+              <Avatar>
+                <AvatarImage src={barbershop.imageUrl} />
+              </Avatar>
+              <div>
+                <h3 className="font-bold">{barbershop.name}</h3>
+                <p className="text-xs">{barbershop.address}</p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        <h2 className="text-lg font-bold uppercase md:pt-5 md:text-base">
           Sobre nós
         </h2>
-        <p className="text-justify text-sm">{barbershop?.description}</p>
+        <p className="text-justify text-sm md:pt-3 md:text-xs md:text-gray-400">
+          {barbershop?.description}
+        </p>
       </div>
 
       {/* Serviços */}
-      <div className="space-y-3 border-b border-solid p-5">
+      <div className="space-y-3 border-b border-solid p-5 md:ml-6">
         <h2 className="text-xss mb-3 font-bold uppercase text-gray-400">
           Serviços
         </h2>
-        <div className="space-y-3">
+        <div className="space-y-3 md:grid md:w-[62%] md:grid-cols-2 md:gap-2 md:space-y-0">
           {barbershop.services.map((service) => (
             <ServiceItem
               key={service.id}
