@@ -68,7 +68,6 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
       {/* Descrição */}
       <div className="border-b border-solid p-5 md:absolute md:right-3 md:top-28 md:mr-10 md:w-[32%] md:rounded-2xl md:bg-secondary">
         {/* Mapa */}
-
         <div className="relative">
           <Image
             alt={`Mapa da barbearia ${barbershop.name}`}
@@ -97,6 +96,14 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
         <p className="text-justify text-sm md:pt-3 md:text-xs md:text-gray-400">
           {barbershop?.description}
         </p>
+
+        <div className="mt-3 hidden md:inline-grid md:w-full md:grid-rows-2 md:border-b md:border-t md:border-solid md:border-secondary-foreground/20 md:pb-4 md:pt-2">
+          {barbershop.phones.map((phone, index) => (
+            <div key={`${phone}-${index}`} className="md:mt-2">
+              <PhoneItem phone={phone} />
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Serviços */}
@@ -104,7 +111,7 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
         <h2 className="text-xss mb-3 font-bold uppercase text-gray-400">
           Serviços
         </h2>
-        <div className="space-y-3 md:grid md:w-[62%] md:grid-cols-2 md:gap-2 md:space-y-0">
+        <div className="space-y-3 md:grid md:w-[61%] md:grid-cols-2 md:gap-2 md:space-y-0">
           {barbershop.services.map((service) => (
             <ServiceItem
               key={service.id}
@@ -116,7 +123,7 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
       </div>
 
       {/* Contatos */}
-      <div className="space-y-3 p-5">
+      <div className="space-y-3 p-5 md:hidden">
         {barbershop.phones.map((phone, index) => (
           <PhoneItem key={`${phone}-${index}`} phone={phone} />
         ))}

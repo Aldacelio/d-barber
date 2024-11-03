@@ -16,15 +16,15 @@ const PhoneItem = ({ phone }: PhoneItemProps) => {
   return (
     <div key={phone} className="flex justify-between">
       <div className="flex items-center gap-2">
-        <SmartphoneIcon />
-        <p className="text-sm">{phone}</p>
+        <SmartphoneIcon className="md:h-5" />
+        <p className="text-sm md:text-xs">{phone}</p>
       </div>
       <Button
         variant="outline"
         size="sm"
         onClick={() => handleCopyPhoneClick(phone)}
       >
-        Copiar
+        <span className="md:text-xs">Copiar</span>
       </Button>
     </div>
   )
