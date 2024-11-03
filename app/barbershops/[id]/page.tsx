@@ -19,6 +19,26 @@ interface BarbershopPageProps {
   }
 }
 
+const TIME_LIST = [
+  "Fechado",
+  "08:00 - 18:00",
+  "08:00 - 18:00",
+  "08:00 - 18:00",
+  "08:00 - 18:00",
+  "08:00 - 18:00",
+  "Fechado",
+]
+
+const DAYS_LIST = [
+  "Segunda-Feira",
+  "Terça-Feira",
+  "Quarta-Feira",
+  "Quinta-Feira",
+  "Sexta-Feira",
+  "Sábado",
+  "Domingo",
+]
+
 const BarbershopPage = async ({ params }: BarbershopPageProps) => {
   const barbershop = await getBarbershopServices(params)
 
@@ -103,6 +123,33 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
               <PhoneItem phone={phone} />
             </div>
           ))}
+        </div>
+
+        <div className="hidden pb-4 md:my-4 md:inline-grid md:w-full md:grid-cols-2 md:gap-2 md:border-b md:border-solid md:border-secondary-foreground/20 md:text-xs">
+          <div className="inline-grid w-full grid-cols-1 items-end gap-2 text-secondary-foreground/40">
+            {DAYS_LIST.map((day, index) => (
+              <span key={index}>{day}</span>
+            ))}
+          </div>
+
+          <div className="inline-grid grid-cols-1 items-start gap-2">
+            {TIME_LIST.map((time, index) => (
+              <span key={index} className="text-right">
+                {time}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className="my-4 hidden w-full grid-cols-2 text-xs md:inline-grid">
+          <span className="justify-self-start">Em parceria com</span>
+          <Image
+            alt="logo"
+            src="/logo.png"
+            height={22}
+            width={100}
+            className="h-auto w-[60%] justify-self-end"
+          />
         </div>
       </div>
 
