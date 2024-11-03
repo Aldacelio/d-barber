@@ -94,6 +94,22 @@ const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
   )
   const [dayBookings, setDayBookings] = useState<Booking[]>([])
   const [bookingSheetIsOpen, setBookingSheetIsOpen] = useState(false)
+  const [isDesktop, setIsDesktop] = useState(false)
+
+  useEffect(() => {
+    // Cria uma media query para telas maiores que 768px
+    const mediaQuery = window.matchMedia("(min-width: 768px)")
+
+    // Função para atualizar o estado isDesktop conforme o tamanho da tela muda
+    const handleResize = () => setIsDesktop(mediaQuery.matches)
+
+    // Adiciona um ouvinte para mudanças na media query e executa a função inicialmente
+    mediaQuery.addEventListener("change", handleResize)
+    handleResize() // Chama para definir o estado na primeira renderização
+
+    // Remove o ouvinte quando o componente for desmontado
+    return () => mediaQuery.removeEventListener("change", handleResize)
+  }, [])
 
   useEffect(() => {
     const fetch = async () => {
@@ -204,11 +220,14 @@ const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
                 >
                   Reservar
                 </Button>
-                <SheetContent className="w-[85%] px-0">
+
+                <SheetContent className="w-[85%] px-0 md:px-3">
                   <SheetHeader>
-                    <SheetTitle>Fazer Reserva</SheetTitle>
+                    <SheetTitle className="ml-5 md:ml-4">
+                      Fazer Reserva
+                    </SheetTitle>
                   </SheetHeader>
-                  <div className="border-b border-solid py-5">
+                  <div className="border-b border-solid py-5 md:h-[45%]">
                     <Calendar
                       mode="single"
                       locale={ptBR}
@@ -218,13 +237,16 @@ const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
                       styles={{
                         head_cell: {
                           width: "100%",
+                          height: isDesktop ? "100%" : "",
                           textTransform: "capitalize",
                         },
                         cell: {
                           width: "100%",
+                          height: isDesktop ? "100%" : "",
                         },
                         button: {
-                          width: "100%",
+                          width: isDesktop ? "60%" : "100%",
+                          height: isDesktop ? "100%" : "",
                         },
                         nav_button_previous: {
                           width: "32px",
@@ -237,16 +259,20 @@ const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
                         caption: {
                           textTransform: "capitalize",
                         },
+                        caption_start: {
+                          width: isDesktop ? "100%" : "",
+                          height: isDesktop ? "100%" : "",
+                        },
                       }}
                     />
                   </div>
 
                   {selectedDay && (
-                    <div className="flex gap-3 overflow-x-auto border-b border-solid p-5 [&::-webkit-scrollbar]:hidden">
+                    <div className="flex gap-3 overflow-x-auto border-b border-solid p-5 md:p-2 [&::-webkit-scrollbar]:hidden">
                       {timeList.length > 0 ? (
                         timeList.map((time) => (
                           <Button
-                            className="rouded-full"
+                            className="rouded-full md:h-8 md:w-14 md:text-xs"
                             variant={
                               selectedTime === time ? "default" : "outline"
                             }
@@ -274,10 +300,11 @@ const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
                     </div>
                   )}
 
-                  <SheetFooter className="mt-5 px-5">
+                  <SheetFooter className="mt-5 px-5 md:mt-3">
                     <Button
                       onClick={handleCreateBooking}
                       disabled={!selectedTime || !selectedDay}
+                      className="w-full"
                     >
                       Confirmar
                     </Button>
@@ -293,7 +320,7 @@ const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
         open={signInDialogIsOpen}
         onOpenChange={(open) => setSignInDialogIsOpen(open)}
       >
-        <DialogContent className="w-[90%]">
+        <DialogContent aria-description="Fazer Login" className="w-[90%]">
           <SignInDialog />
         </DialogContent>
       </Dialog>
