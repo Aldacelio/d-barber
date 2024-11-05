@@ -6,6 +6,7 @@ import { Dialog, DialogContent } from "../_components/ui/dialog"
 import SignInDialog from "../_components/sign-in-dialog"
 import { getConfirmedBookings } from "../_data/get-confirmed-bookings"
 import { getConcludedBookings } from "../_data/get-concluded-bookings"
+import BookingSummary from "../_components/booking-summary"
 
 const Bookings = async () => {
   const session = await getServerSession(authOptions)
@@ -21,12 +22,11 @@ const Bookings = async () => {
 
   const confirmedBookings = await getConfirmedBookings()
   const concludedBookings = await getConcludedBookings()
-
   return (
     <>
       <Header />
 
-      <div className="space-y-3 p-5">
+      <div className="space-y-3 p-5 md:ml-40">
         <h1 className="text-xl font-bold">Agendamentos</h1>
         {confirmedBookings.length === 0 && concludedBookings.length === 0 && (
           <p className="text-gray-400">Você não tem agendamentos.</p>
@@ -37,10 +37,12 @@ const Bookings = async () => {
               Confirmados
             </h2>
             {confirmedBookings.map((booking) => (
-              <BookingItem
-                key={booking.id}
-                booking={JSON.parse(JSON.stringify(booking))}
-              />
+              <>
+                <BookingItem
+                  key={booking.id}
+                  booking={JSON.parse(JSON.stringify(booking))}
+                />
+              </>
             ))}
           </>
         )}
