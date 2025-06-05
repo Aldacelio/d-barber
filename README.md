@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🚀 D-Barber
 
-## Getting Started
+## 💻 Projeto
 
-First, run the development server:
+Este é um sistema para agendamento de serviços de barbearia, desenvolvido com tecnologias modernas para oferecer uma solução completa de gerenciamento de agendamentos. O sistema conta com:
+
+- Design responsivo e acessível
+- Sistema de autenticação seguro
+- Gerenciamento de agendamentos
+- Animações suaves e modo dark/light
+- Validação de formulários robusta
+
+## ✨ Tecnologias
+
+- [Next.js 14](https://nextjs.org/)
+- [React 18](https://reactjs.org)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Prisma](https://www.prisma.io/) (ORM para banco de dados)
+- [NextAuth.js](https://next-auth.js.org/) (Autenticação)
+- [Zod](https://zod.dev/) (Validação de dados)
+- [Radix UI](https://www.radix-ui.com/) (Componentes acessíveis)
+- [Lucide Icons](https://lucide.dev/) (Ícones)
+- [date-fns](https://date-fns.org/) (Manipulação de datas)
+
+## 🔍 Features
+
+- ⚡ Aplicação full-stack com Next.js
+- 🔐 Autenticação segura com NextAuth
+- 🗓️ Sistema de agendamento com react-day-picker
+- 📝 Formulários validados com React Hook Form + Zod
+- 🎨 Design system com Tailwind CSS + CVA
+- 🌓 Tema claro/escuro com next-themes
+- 📊 Banco de dados com Prisma ORM
+- 🛠️ Code quality com ESLint, Prettier e Husky
+- 🚀 Deploy fácil com Vercel
+
+## 🚀 Como executar
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+# Clone este repositório
+$ git clone https://github.com/Aldacelio/d-barber
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Entre na pasta do projeto
+$ cd d-barber
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# Instale as dependências
+$ npm install
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+# Configure o banco de dados (certifique-se de ter o PostgreSQL rodando)
+$ npx prisma migrate dev
 
-## Learn More
+# Execute a aplicação em modo desenvolvimento
+$ npm run dev
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+# O sistema estará disponível em http://localhost:3000
