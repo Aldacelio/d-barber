@@ -1,5 +1,9 @@
 # 🚀 D-Barber
 
+<p align="center">
+  <img src="public/banner-01.png" alt="banner" width="100%" />
+</p>
+
 ## 💻 Projeto
 
 Este é um sistema para agendamento de serviços de barbearia, desenvolvido com tecnologias modernas para oferecer uma solução completa de gerenciamento de agendamentos. O sistema conta com:
