@@ -36,8 +36,6 @@ Este é um sistema para agendamento de serviços de barbearia, desenvolvido com 
 - 🎨 Design system com Tailwind CSS + CVA
 - 🌓 Tema claro/escuro com next-themes
 - 📊 Banco de dados com Prisma ORM
-- 🛠️ Code quality com ESLint, Prettier e Husky
-- 🚀 Deploy fácil com Vercel
 
 ## 🚀 Como executar
 
